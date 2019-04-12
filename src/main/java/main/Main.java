@@ -60,11 +60,11 @@ public class Main {
         insertar.setAdministrador(true);
         insertar.setId(1);
         insertar.setAutor(true);
-        insertar.setNombre("Jhon Ridore");
+        insertar.setNombre("Claude Sylla");
         insertar.setPassword("1234");
-        insertar.setUsername("anyderre");
+        insertar.setUsername("CJSylla");
 
-        if(usuarioServices.getUsuario("anyderre").isEmpty()){
+        if(usuarioServices.getUsuario("CJSylla").isEmpty()){
             usuarioServices.crear(insertar);
 
         }
