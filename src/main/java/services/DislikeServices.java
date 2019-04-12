@@ -1,0 +1,38 @@
+package services;
+
+import entidades.Articulo;
+import entidades.Comentario;
+import entidades.Dislike;
+
+import javax.persistence.EntityManager;
+import javax.persistence.Query;
+import java.util.List;
+
+
+public class DislikeServices extends GestionDb<Dislike> {
+    private static DislikeServices instancia;
+
+    private DislikeServices(){
+        super(Dislike.class);
+    }
+
+    public static DislikeServices getInstancia(){
+        if(instancia==null){
+            instancia = new DislikeServices();
+        }
+        return instancia;
+    }
+
+    public List<Dislike> findAllByComentario(Comentario comentario){
+        EntityManager entityManager = getEntityManager();
+        Query query= entityManager.createQuery("select d from Dislike d where d.comentario like :comentario");
+        query.setParameter("comentario", comentario);
+        return query.getResultList();
+    }
+    public Boolean deleteAllByComentario(Comentario comentario){
+        EntityManager entityManager = getEntityManager();
+        Query query= entityManager.createQuery("delete from Dislike a where a.comentario like :comentario");
+        query.setParameter("comentario", comentario);
+        return true;
+    }
+}
